@@ -52,7 +52,7 @@ const Modal: React.FC<ModalProps> = ({
     if (!input.replaceAll(' ', '')) {
       setInput(input.replaceAll(' ', ''));
     }
-    if (input.replaceAll(' ', '')) {
+    if (input.replaceAll(' ', '') && id) {
       dispatch(
         renameCollection({ id: id, newTitle: input, newTag: tagSelect })
       );

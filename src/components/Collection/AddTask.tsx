@@ -20,8 +20,13 @@ const AddTask: React.FC<AddTaskProps> = ({ color, id }) => {
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    dispatch(addTask({ id, description: input }));
-    setInput('');
+    if (!input.replaceAll(' ', '')) {
+      setInput(input.replaceAll(' ', ''));
+    }
+    if (input.replaceAll(' ', '')) {
+      dispatch(addTask({ id, description: input }));
+      setInput('');
+    }
   };
   return (
     <div className='mb-5'>

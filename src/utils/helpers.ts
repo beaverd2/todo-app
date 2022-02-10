@@ -20,13 +20,13 @@ export const getColor = (tag: Tag) => {
     return '#db2777';
   }
   if (tag === 'work') {
-    return '#7c3aed';
+    return '#0284c7';
   }
   if (tag === 'personal') {
     return '#0d9488';
   }
   if (tag === 'creative') {
-    return '#0284c7';
+    return '#7c3aed';
   }
   return '#db2777';
 };
