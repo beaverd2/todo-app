@@ -1,3 +1,4 @@
+import { Tag } from './../../types/Tag';
 import { ICollection } from './../../types/ICollection';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
@@ -142,7 +143,10 @@ export const collectionsSlice = createSlice({
   name: 'collection',
   initialState,
   reducers: {
-    addCollection: (state, action) => {
+    addCollection: (
+      state,
+      action: PayloadAction<{ title: string; tag: Tag }>
+    ) => {
       state.collections.push({
         id: Date.now(),
         title: action.payload.title,
@@ -151,26 +155,32 @@ export const collectionsSlice = createSlice({
         tasks: [],
       });
     },
-    deleteCollection: (state, action) => {
+    deleteCollection: (state, action: PayloadAction<number>) => {
       state.collections = state.collections.filter(
-        (collection) => collection.id !== action.payload.id
+        (collection) => collection.id !== action.payload
       );
     },
-    renameCollection: (state, action) => {
+    renameCollection: (
+      state,
+      action: PayloadAction<{ id: number; newTitle: string; newTag: Tag }>
+    ) => {
       const collectionIndex = state.collections.findIndex(
         (collection) => collection.id === action.payload.id
       );
       state.collections[collectionIndex].title = action.payload.newTitle;
       state.collections[collectionIndex].tag = action.payload.newTag;
     },
-    toggleFavourite: (state, action) => {
+    toggleFavourite: (state, action: PayloadAction<number>) => {
       const collectionIndex = state.collections.findIndex(
-        (collection) => collection.id === action.payload.id
+        (collection) => collection.id === action.payload
       );
       state.collections[collectionIndex].isFavourite =
         !state.collections[collectionIndex].isFavourite;
     },
-    addTask: (state, action) => {
+    addTask: (
+      state,
+      action: PayloadAction<{ id: number; description: string }>
+    ) => {
       const collectionIndex = state.collections.findIndex(
         (collection) => collection.id === action.payload.id
       );
@@ -181,15 +191,18 @@ export const collectionsSlice = createSlice({
         isCompleted: false,
       });
     },
-    deleteCompleted: (state, action) => {
+    deleteCompleted: (state, action: PayloadAction<number>) => {
       const collectionIndex = state.collections.findIndex(
-        (collection) => collection.id === action.payload.id
+        (collection) => collection.id === action.payload
       );
       state.collections[collectionIndex].tasks = state.collections[
         collectionIndex
       ].tasks.filter((task) => task.isCompleted !== true);
     },
-    toggleComplete: (state, action) => {
+    toggleComplete: (
+      state,
+      action: PayloadAction<{ collectionId: number; id: number }>
+    ) => {
       const collectionIndex = state.collections.findIndex(
         (collection) => collection.id === action.payload.collectionId
       );

@@ -21,14 +21,14 @@ const DropDown: React.FC<DropDownProps> = ({
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const handleDelete = () => {
-    dispatch(deleteCollection({ id }));
+    dispatch(deleteCollection(id));
     navigate('/');
   };
   const handleFavourite = () => {
-    dispatch(toggleFavourite({ id }));
+    dispatch(toggleFavourite(id));
   };
   const handleClear = () => {
-    dispatch(deleteCompleted({ id }));
+    dispatch(deleteCompleted(id));
   };
 
   return (

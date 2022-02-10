@@ -16,7 +16,7 @@ const CollectionsItem: React.FC<CollectionsItemProps> = ({ collection }) => {
 
   const handleToggle = (e: SyntheticEvent) => {
     e.preventDefault();
-    dispatch(toggleFavourite({ id: collection.id }));
+    dispatch(toggleFavourite(collection.id));
   };
 
   const collectionLenght = collection.tasks.length;
